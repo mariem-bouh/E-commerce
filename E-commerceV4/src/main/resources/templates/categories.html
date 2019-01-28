@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" 
+       
+    href="../static/css/bootstrap.min.css"
+    
+    th:href="@{../css/bootstrap.min.css}"
+    
+    />
+</head>
+<body>
+
+ <header>
+  <div class="navbar navbar-inverse">
+<ul class="nav navbar-nav">
+<li><a th:href="@{/adminCat/index}">List Categorie</a></li>
+<li><a th:href="@{/adminCat/FormAjoutCat}">Ajouter categorie</a></li>
+
+				<li><a th:href="@{/adminCat/indexSousCat}">List sousCategorie</a></li>
+				<li><a th:href="@{/adminCat/FormAjoutSousCat}">Ajouter
+						Souscategorie</a></li>
+				<li><a th:href="@{/adminProd/index}">List Produit</a></li>
+				<li><a th:href="@{/adminProd/FormAjoutProd}">Ajouter
+						Produit</a></li>
+</ul>
+</div>
+  </header>
+<div class="container col-md-10 col-md-offset-1">
+
+<div class="panel panel-primary">
+<div class="panel-heading">Liste des Categories</div>
+  <div class="panel-body">
+
+  <table class="table table-striped">
+  <tr>
+   <th>ID</th><th>DESCRIPTION</th><th>Nom_categorie</th><th>PHOTO</th><th></th>	
+  </tr>
+  
+   <tr th:each="p:${categories}">
+  <td th:text="${p.idcategorie}"></td>
+  <td th:text="${p.description}"></td>
+  <td th:text="${p.nomCategorie}"></td>
+  <td><img class="img-responsive" th:src="@{'/images/' + ${p.photo}}" width="40%" height="10%"/></td>
+  <td> <a th:href="@{EditCat(id=${p.idcategorie})}" >Edite</a>
+	  </td>
+    <td> <a onclick="return confirm('Etes vous sure ?')" th:href="@{SupprimerCat(id=${p.idcategorie})}" >Delete</a>
+	  </td>
+  
+  </tr>
+  
+  </table>
+  </div>
+
+</div>		
+  
+</div>	
+</body>
+</html>
