@@ -16,6 +16,7 @@ import com.example.ecommerce.controller.AdminCategoriesController;
 @SpringBootApplication
 public class ECommerceV4Application {
 
+	
 	public static void main(String[] args) {
 
 		//	ConfigurableApplicationContext ctx=	
