@@ -63,7 +63,7 @@ public String saveCat(Model model,Categorie c,MultipartFile files,BindingResult 
 			Files.write(fileNameAndPath, file.getBytes());
 		
 
-		  c.setPhoto(fileNames.toString());
+		  c.setPhoto(fileNames.toString()); 
 		  metier.AjouterCategorie(c);
 		  } catch (IOException e) {
 			e.printStackTrace();
