@@ -3,6 +3,7 @@ package com.example.ecommerce.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,11 +18,22 @@ public class LigneCommande implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idProduit")
 	private Produits produit;
+	
 	private int quantite;
 	private double prix;
+	
+	
 	@ManyToOne
 	@JoinColumn(name="idCommande")
 	private Commande commande;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="idPanier")
+	private Panier panier;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}

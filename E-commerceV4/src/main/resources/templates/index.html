@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 
   <head>
 
@@ -35,14 +37,49 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" th:href="@{/login}">login</a>
             </li>
+          
+ <li sec:authorize="isAuthenticated()"><a th:href="@{/login?logout}">logout</a></li>
+    
+
+          
+      <div  sec:authorize="hasRole('ADMIN_PROD')">
+               <li class="nav-item" >
+              <a class="nav-link" th:href="@{/adminProd/index}" >Panel admin Prod </a>
+            </li>
+  
+      </div>
+            
+       <div  sec:authorize="hasRole('ADMIN_CAT')">
+               <li class="nav-item" >
+              <a class="nav-link" th:href="@{/adminCat/index}" >Panel admin Cat </a>
+            </li>
+  
+      </div>          
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+		              <a class="nav-link" href="#" th:text="${#httpServletRequest.remoteUser}"></a>
             </li>
-            <li class="nav-item">
-		              <a class="nav-link" th:href="@{/login?logout}">Deconnection</a>
-            </li>
+            
+            <div sec:authorize="hasRole('ROLE_USER')">
+<ul class="dropdown" >
+   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+   <span class="caret"></span></button>
+   <ul class="dropdown-menu">
+    <li><a href="#">
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    <span class="badge"></span>
+    -&#8377;0.0
+    </a></li>
+     <li><a th:href="@{/login?logout}">logout</a></li>
+     
+     <li><a href="#" ><span th:text="${userModel.fullname}"></span></a></li>
+         <li><a href="#" ><span th:text="${userModel.role}"></span></a></li>
+         <li><a href="#" ><span th:text="${userModel.panier.total}"></span></a></li>
+   </ul>
+   </ul>
+</div> 
+            
           </ul>
         </div>
       </div>
@@ -60,6 +97,16 @@
             <a href="#" class="list-group-item">Category 1</a>
             <a href="#" class="list-group-item">Category 2</a>
             <a href="#" class="list-group-item">Category 3</a>
+          
+          <div sec:authorize="isAuthenticated()">
+  This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasRole('ADMIN_PROD')">
+  This content is only shown to administrators.
+</div>
+<div sec:authorize="hasRole('USER')">
+  This content is only shown to users.
+</div>
           </div>
 
         </div>
@@ -104,11 +151,13 @@
                     <a href="#"> <p th:text="${p.designation}"></p></a>
                   </h4>
                   <h5 > <p th:text="${p.prix}"></p> MRU</h5>
-                  <p class="card-text" > <span th:text="${p.description}"></span></p>
+                  <p class="card-text" > 
+
+                  <span th:text="${p.description}"></span></p>
                 </div>
                 <div class="card-footer">
                 <a class="btn btn-primary" th:href="@{/user/detail}">Details</a>
-                <a class="btn btn-primary" th:href="@{/user/index}" style="float: right;">Panier</a>
+                <a class="btn btn-primary" th:href="@{/user/panier}" style="float: right;">Panier</a>
              	 </div>
               </div>
             </div>

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.dao.IEcommerceDAO;
 import com.example.ecommerce.entities.Categorie;
-import com.example.ecommerce.entities.Client;
 import com.example.ecommerce.entities.Commande;
 import com.example.ecommerce.entities.Panier;
 import com.example.ecommerce.entities.Produits;
 import com.example.ecommerce.entities.Role;
 import com.example.ecommerce.entities.SousCategorie;
-import com.example.ecommerce.entities.User;
+import com.example.ecommerce.entities.Users;
+import com.example.ecommerce.entities.Users;
 @Service
 @Transactional
 public class EcommerceMetierImpl implements IAdminCategorieMetier {
@@ -88,7 +88,7 @@ public class EcommerceMetierImpl implements IAdminCategorieMetier {
 	}
 
 	@Override
-	public Commande enregistrerCommnde(Panier p, Client c) {
+	public Commande enregistrerCommnde(Panier p, Users c) {
 		// TODO Auto-generated method stub
 		return dao.enregistrerCommnde(p, c);
 	}
@@ -112,7 +112,7 @@ public class EcommerceMetierImpl implements IAdminCategorieMetier {
 	}
 
 	@Override
-	public void AjouterUser(User u) {
+	public void AjouterUser(Users u) {
 		dao.AjouterUser(u);
 
 	}

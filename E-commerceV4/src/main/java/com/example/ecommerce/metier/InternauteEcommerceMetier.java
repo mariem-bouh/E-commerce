@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.ecommerce.entities.Categorie;
-import com.example.ecommerce.entities.Client;
 import com.example.ecommerce.entities.Commande;
 import com.example.ecommerce.entities.Panier;
 import com.example.ecommerce.entities.Produits;
+import com.example.ecommerce.entities.Users;
 
 public interface InternauteEcommerceMetier {
 
@@ -19,5 +19,5 @@ public interface InternauteEcommerceMetier {
 	public List<Produits> produitParCategorie(Long idcat);
 	public List<Produits> produitSelectionner();
 	public Produits getProduit(Long idP);
-	public Commande enregistrerCommnde(Panier p,Client c);
+	public Commande enregistrerCommnde(Panier p,Users c);
 }

@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.entities.Categorie;
-import com.example.ecommerce.entities.Client;
+
 import com.example.ecommerce.entities.Commande;
 import com.example.ecommerce.entities.LigneCommande;
 import com.example.ecommerce.entities.Panier;
 import com.example.ecommerce.entities.Produits;
 import com.example.ecommerce.entities.Role;
 import com.example.ecommerce.entities.SousCategorie;
-import com.example.ecommerce.entities.User;
+import com.example.ecommerce.entities.Users;
+
 @Service
 public class EcommerceDAOImpl implements IEcommerceDAO {
 	
@@ -27,8 +28,6 @@ public class EcommerceDAOImpl implements IEcommerceDAO {
 	private ProduitRepositorie produitRepositorie;
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
-	private ClientRepository ClientRepository;
 	@Autowired
 	private LigneCommandeRepository ligneCommandeRepository;
 	@Autowired
@@ -122,7 +121,7 @@ public class EcommerceDAOImpl implements IEcommerceDAO {
 	}
 
 	@Override
-	public void AjouterUser(User u) {
+	public void AjouterUser(Users u) {
 		userRepository.save(u);
 
 	}
@@ -130,28 +129,10 @@ public class EcommerceDAOImpl implements IEcommerceDAO {
 	// a revoir ce gerer pa spring security
 	@Override
 	public void AttribuerRole(Role R, Long userid) {
-		Optional<User> user = userRepository.findById(userid);
+		Optional<Users> user = userRepository.findById(userid);
 
 	}
 
-	@Override
-	public Commande enregistrerCommnde(Panier p, Client c) {
-		// on enregistre d'habord le client
-		ClientRepository.save(c);
-		// cration d'une commande
-		Commande commande = new Commande();
-		// definition des informations sur la commande
-		commande.setDate(new Date());
-		// recuperation de la liste et stockage dans la commande
-		commande.setItems(p.getItem());
-		// enregistrement des items
-		for (LigneCommande lc : p.getItem()) {
-           ligneCommandeRepository.save(lc);
-		}
-		//enregistrement de la commande
-		commandeRepository.save(commande);
-		return commande;
-	}
 
 	@Override
 	public Long AjouterSousCategorie(SousCategorie c) {
@@ -181,6 +162,27 @@ public class EcommerceDAOImpl implements IEcommerceDAO {
 	public void modifierSousCategorie(SousCategorie c) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Commande enregistrerCommnde(Panier p, Users c) {
+		/*		// on enregistre d'habord le client
+		ClientRepository.save(c);
+		// cration d'une commande
+		Commande commande = new Commande();
+		// definition des informations sur la commande
+		commande.setDate(new Date());
+		// recuperation de la liste et stockage dans la commande
+		commande.setItems(p.getItem());
+		// enregistrement des items
+		for (LigneCommande lc : p.getItem()) {
+           ligneCommandeRepository.save(lc);
+		}
+		//enregistrement de la commande
+		commandeRepository.save(commande);
+		return commande;
+	*/
+		return null;
 	}
 
 }

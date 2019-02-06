@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.entities.Categorie;
-import com.example.ecommerce.entities.Client;
 import com.example.ecommerce.entities.Commande;
 import com.example.ecommerce.entities.Panier;
 import com.example.ecommerce.entities.Produits;
 import com.example.ecommerce.entities.Role;
 import com.example.ecommerce.entities.SousCategorie;
-import com.example.ecommerce.entities.User;
+import com.example.ecommerce.entities.Users;
+
 @Service
 public interface IEcommerceDAO {
 	public Long AjouterCategorie(Categorie c);
@@ -38,8 +38,8 @@ public interface IEcommerceDAO {
 	public void modifierProduit(Produits p);
 	
 	
-	public void AjouterUser(User u);
+	public void AjouterUser(Users u);
 	public void AttribuerRole(Role R,Long userid);
-	public Commande enregistrerCommnde(Panier p,Client c);
+	public Commande enregistrerCommnde(Panier p,Users c);
 	
 }

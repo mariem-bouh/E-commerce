@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,8 +21,8 @@ public class Commande implements Serializable{
 	@OneToMany(mappedBy="commande")
 	private Collection<LigneCommande> items;
 	@ManyToOne
-	@JoinColumn(name="idclient")
-	private Client client;
+	@JoinColumn(name="idUser")
+	private Users users;
 	
 	public Long getIdCommande() {
 		return idCommande;
@@ -47,12 +48,12 @@ public class Commande implements Serializable{
 		this.items = items;
 	}
 
-	public Client getClient() {
-		return client;
+	public Users getUsers() {
+		return users;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
 	public Commande() {
