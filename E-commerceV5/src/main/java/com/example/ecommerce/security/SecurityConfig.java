@@ -24,29 +24,26 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private DataSource dataSource;
-
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+    @Autowired
+	private DataSource dataSource; 
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		/*
-		 * //les utilisateurs qui ont le droit d'acceder a l'application
-		 * auth.inMemoryAuthentication().withUser("samba").password("{noop}123").roles(
-		 * "ADMIN_PROD","ADMIN_CAT");
-		 * auth.inMemoryAuthentication().withUser("moussa").password("{noop}123").roles(
-		 * "ADMIN_PROD");
-		 */
+protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+/*
+	//les utilisateurs qui ont le droit d'acceder a l'application
+	auth.inMemoryAuthentication().withUser("samba").password("{noop}123").roles("ADMIN_PROD","ADMIN_CAT");
+	auth.inMemoryAuthentication().withUser("moussa").password("{noop}123").roles("ADMIN_PROD");
+*/
 
-		// authentification avec la BD
-		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery(
-				"select username as principal , password as credentials ,active as actived from Users where username= ? ")
-				.authoritiesByUsernameQuery(
-						"select u.username as principal ,r.role_name as role from Role r,Users u where r.iduser=u.id_user and username= ? ")
-				.rolePrefix("ROLE_").passwordEncoder(new BCryptPasswordEncoder());
-
+		
+		
+		//authentification avec la BD
+auth.jdbcAuthentication().dataSource(dataSource)
+.usersByUsernameQuery("select username as principal , password as credentials ,active as actived from Users where username= ? ")
+.authoritiesByUsernameQuery("select u.username as principal ,r.role_name as role from Role r,Users u where r.iduser=u.id_user and username= ? ")
+.rolePrefix("ROLE_").passwordEncoder(new BCryptPasswordEncoder());
 	}
-
+	
 @Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub	
@@ -58,21 +55,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 http.authorizeRequests().antMatchers("/adminCat/**").hasRole("ADMIN_CAT");
 	 //http.authorizeRequests().antMatchers("/user/**").permitAll();
 	 http.exceptionHandling().accessDeniedPage("/403");
-	 /*http
-     .logout().logoutUrl("/my/logout").logoutSuccessUrl("/my/index");
- */
+	 
 	}
 
-	@ConditionalOnClass({ SpringSecurityDialect.class })
-	protected static class ThymeleafSecurityDialectConfiguration {
-		protected ThymeleafSecurityDialectConfiguration() {
-		}
+@ConditionalOnClass({SpringSecurityDialect.class})
+protected static class ThymeleafSecurityDialectConfiguration {
+    protected ThymeleafSecurityDialectConfiguration() {
+    }
 
-		@Bean
-		@ConditionalOnMissingBean
-		public SpringSecurityDialect securityDialect() {
-			return new SpringSecurityDialect();
-		}
+    @Bean
+    @ConditionalOnMissingBean
+    public SpringSecurityDialect securityDialect() {
+        return new SpringSecurityDialect();
+    }
 
-	}
+}
 }
