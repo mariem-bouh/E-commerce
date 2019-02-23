@@ -1,5 +1,8 @@
 package com.example.ecommerce.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.ecommerce.entities.LigneCommande;
 import com.example.ecommerce.entities.Panier;
 import com.example.ecommerce.entities.UserModel;
 import com.example.ecommerce.metier.ILigneDeCommandeMetier;
@@ -47,9 +51,17 @@ public class InternauteEcommerceController {
 			}else {
 				//recuperation de l'id du panier
 				Panier panier=utilisateur.getPanier();
+				
 				//liste des ligne de commande pour ce panier
 				model.addAttribute("ligneCommandePanier",LigneDeCommandeMetier.findByPanier(panier));
+				List<LigneCommande> ligneCommande =LigneDeCommandeMetier.findByPanier(panier);
+				for (int i = 0; i < ligneCommande.size(); i++) {
+					LigneCommande ligneCommande2=ligneCommande.get(i);
+				System.out.println(" la desigantion des produits :"+  ligneCommande2.getProduit().getDesignation());
+				}
 				
+				//total dans le panier pour l'utilisateur courant
+				model.addAttribute("totalPanier",utilisateur.getPanier().getTotal());
 				model.addAttribute("ligneCommande",1);
 			}
 				

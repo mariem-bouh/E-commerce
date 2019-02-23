@@ -20,13 +20,13 @@ public class LigneCommande implements Serializable{
 	private Produits produit;
 //	private double total;
 	private int quantite;
-/*	public double getTotal() {
+	public double getTotal() {
 		return total;
 	}
 	public void setTotal(double total) {
 		this.total = total;
 	}
-*/	public Panier getPanier() {
+	public Panier getPanier() {
 		return panier;
 	}
 	public void setPanier(Panier panier) {
@@ -34,7 +34,7 @@ public class LigneCommande implements Serializable{
 	}
 	private double prix;
 	
-	//private double total;
+	private double total;
 	
 	@ManyToOne
 	@JoinColumn(name="idCommande")
