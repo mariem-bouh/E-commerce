@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>E-commerce</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/shop-homepage.css" rel="stylesheet">
+<!-- Fontfaces CSS-->
+    <link href="../css/font-face.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../css/theme.css" rel="stylesheet" media="all">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+   
+      <div class="container">
+      
+      <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action=""  method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Rechercher..." />
+                                <button class="au-btn--submit" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </form>
+                            <div class="header-button">
+                               
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                       
+                                        <div class="content">
+                                        
+                                            <a class="js-acc-btn" href="#"><i class="glyphicon-glyphicon-user"></i>Samba</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                               
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">Samba</a>
+                                                    </h5>
+                                                    <span class="email">samba@example.com</span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a th:href="@{/login?logout}">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+      
+       
+        <!-- 
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+       
+          <ul class="navbar-nav ml-auto">
+           <li>
+ 			 <div class="input-group">
+                    <input type="text" placeholder="recherche" name="s" class="form-control left-rounded">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">Chercher</button>
+                    </div>
+                </div>
+    </li>
+    <li></li>
+          <li sec:authorize="isAuthenticated()"><a th:href="@{/login?logout}">logout</a></li>
+           
+             <li class="nav-item">
+              <a class="nav-link" th:href="@{/login}">login</a>
+            </li>
+          
+ <li sec:authorize="isAuthenticated()"><a th:href="@{/login?logout}">logout</a></li>
+     -->     
+ <!--  
+          
+      <div  sec:authorize="hasRole('ADMIN_PROD')">
+               <li class="nav-item" >
+              <a class="nav-link" th:href="@{/adminProd/index}" >Panel admin Prod </a>
+            </li>
+  
+      </div>
+            
+       <div  sec:authorize="hasRole('ADMIN_CAT')">
+               <li class="nav-item" >
+              <a class="nav-link" th:href="@{/adminCat/index}" >Panel admin Cat </a>
+            </li>
+  
+      </div>   
+      
+            <li class="nav-item">
+		              <a class="nav-link" href="#" th:text="${#httpServletRequest.remoteUser}"></a>
+            </li>
+               
+  
+            <div sec:authorize="hasRole('ROLE_USER')">
+<ul class="dropdown" >
+   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+   <span class="caret"></span></button>
+   <ul class="dropdown-menu">
+    <li><a th:href="@{/user/panier}">
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    <span class="badge"></span>
+    -&#8377;0.0
+    </a></li>
+     <li><a th:href="@{/login?logout}">logout</a></li>
+     
+     <li><a href="#" ><span th:text="${userModel.fullname}"></span></a></li>
+         <li><a href="#" ><span th:text="${userModel.role}"></span></a></li>
+  
+         <li><a th:href="@{/user/panierCMD}" ><span th:text="${userModel.panier.total}"></span></a></li>
+   </ul>
+   </ul>
+</div> 
+            
+          </ul>
+        </div>
+  
+      </div>--> 
+
+     
+    <!-- Page Content -->
+
+
+       <!-- MAIN CONTENT-->
+            <div class="main-content">
+                
+                    <div class="container">
+                    
+                          <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img th:src="@{/images/logo.png}"  />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a class="js-arrow" th:href="@{/index}">
+                                <i class="fas fa-home"></i>
+                                Accueil</a>
+                            
+                        </li> 
+                         <li class="has-sub">
+                            <a class="js-arrow" href="#"><i class="fas fa-table"></i>Categorie</a>
+                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a th:href="@{/adminCat/FormAjoutCat}"><i class="glyphicon glyphicon-plus"></i>Ajouter categorie</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/adminCat/index}"><i class="glyphicon glyphicon-list-alt"></i>liste des categories</a>
+                                </li>
+                                <li>
+                                
+                                    <a th:href="@{/adminCat/FormAjoutSousCat}"><i class="glyphicon glyphicon-th"></i>sous categories </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#"><i class="fab fa-product-hunt"></i>Produits</a>
+                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a th:href="@{/adminProd/FormAjoutProd}"><i class="glyphicon glyphicon-plus"></i>Ajouter un produit</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/adminProd/index}"><i class="glyphicon glyphicon-list-alt"></i>liste des produits</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                           
+                           
+                     
+                         <li>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>utilisateurs</a>
+                        </li>
+                       
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+       
+        <!-- END MENU SIDEBAR-->
+                        <div style="margin-left:25%">
+        <!-- /.col-lg-3 -->
+   
+    
+    
+ 
+
+        <div class="col-lg-9">
+          <div class="row">
+     
+            <div class="col-lg-5 col-md-6 mb-4" th:each="p:${produit}">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" th:src="@{'/images/' + ${p.photo}}"  alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#"> <p th:text="${p.designation}"></p></a>
+                  </h4>
+                  <h5 > <p th:text="${p.prix}"></p> MRU</h5>
+                  <p class="card-text" > 
+
+                  <span th:text="${p.description}"></span></p>
+                </div>
+                <div class="card-footer">
+                <a class="btn btn-primary" th:href="@{/user/detail}">Details</a>
+                <a class="btn btn-primary" th:href="@{/user/panierCMD}" style="float: right;">Panier</a>
+             	 </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- /.row -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</div>
+</div>
+    <!-- Footer -->
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Jquery JS-->
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../vendor/slick/slick.min.js">
+    </script>
+    <script src="../vendor/wow/wow.min.js"></script>
+    <script src="../vendor/animsition/animsition.min.js"></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../js/main.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Gestion des produits</title>
+    <link rel="stylesheet" type="text/css" 
+       
+    href="../static/css/bootstrap.min.css"
+    
+    th:href="@{../css/bootstrap.min.css}"
+    
+    />
+<!-- Fontfaces CSS-->
+    <link href="../css/font-face.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../css/theme.css" rel="stylesheet" media="all">
+</head>
+<body>
+	<div class="page-wrapper">
+
+ <!-- MAIN CONTENT-->
+            <div class="main-content">
+                
+                    <div class="container">
+                    
+                          <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-home"></i>
+                                Accueil</a>
+                            
+                        </li> 
+                         <li class="has-sub">
+                            <a class="js-arrow" href="#"><i class="fas fa-table"></i>Categorie</a>
+                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a th:href="@{/adminCat/FormAjoutCat}"><i class="glyphicon glyphicon-plus"></i>Ajouter categorie</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/adminCat/index}"><i class="glyphicon glyphicon-list-alt"></i>liste des categories</a>
+                                </li>
+                                <li>
+                                
+                                    <a th:href="@{/adminCat/FormAjoutSousCat}"><i class="glyphicon glyphicon-th"></i>sous categories </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#"><i class="fab fa-product-hunt"></i>Produits</a>
+                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a th:href="@{/adminProd/FormAjoutProd}"><i class="glyphicon glyphicon-plus"></i>Ajouter un produit</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/adminProd/index}"><i class="glyphicon glyphicon-list-alt"></i>liste des produits</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                         <li>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>utilisateurs</a>
+                        </li>
+                       
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+ <div style="margin-left:25%">
+
+<div class="container col-md-10 col-md-offset-1">
+
+  <div class="table-responsive table--no-card m-b-30">
+   <table class="table table-borderless table-striped ">
+  <tr>
+   <th>ID</th><th>DESIGNATION</th><th>DESCRIPTION</th><!--<th>SOUS_CATEGORIE</th>  --><th>CATEGORIE</th><th>PRIX</th> <th>SELECTED</th> <th>QUANTITER</th><th>PHOTO</th><th></th><th></th>	
+  </tr>
+  
+   <tr th:each="p:${produit}">
+  <td th:text="${p.idProduit}"></td>
+  <td th:text="${p.designation}"></td>
+  <td th:text="${p.description}"></td>
+  <td th:text="${p.souscategorie.nomSousCategorie}"></td>
+  <!-- 
+    <td th:text="${p.sousCategories.nomCategorie}"></td>
+   -->
+  <td th:text="${p.prix}"></td>
+  <td th:text="${p.selected}">
+  </td>
+  <td th:text="${p.quantite}"></td>
+  <td><img class="img-responsive" th:src="@{'/images/' + ${p.photo}}" width="40%" height="10%"/></td>
+   <td></td>
+    <td></td>
+     <td></td>
+  <td> <a th:href="@{FormEditProd(id=${p.idProduit})}" >Edite</a>
+	  </td>
+    <td> <a onclick="return confirm('Etes vous sure ?')" th:href="@{SupprimerProd(id=${p.idProduit})}" >Delete</a>
+	  </td>
+  
+  </tr>
+  
+  </table>
+  </div>
+ </div>	
+ </div>	
+		
+ </div>	
+ </div>	 
+</div>	
+<!-- Jquery JS-->
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../vendor/slick/slick.min.js">
+    </script>
+    <script src="../vendor/wow/wow.min.js"></script>
+    <script src="../vendor/animsition/animsition.min.js"></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../js/main.js"></script>
+</body>
+</html>
