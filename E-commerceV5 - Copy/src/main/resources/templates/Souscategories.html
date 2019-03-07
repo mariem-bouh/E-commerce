@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<header>
+		<div class="navbar navbar-inverse">
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/adminCat/index}">List categorie</a></li>
+				<li><a th:href="@{/adminCat/FormAjoutCat}">Ajouter
+						categorie</a></li>
+				<li><a th:href="@{/adminCat/indexSousCat}">List sousCategorie</a></li>
+				<li><a th:href="@{/adminCat/FormAjoutSousCat}">Ajouter
+						Souscategorie</a></li>
+				<li><a th:href="@{/adminProd/index}">List Produit</a></li>
+				<li><a th:href="@{/adminProd/FormAjoutProd}">Ajouter
+						Produit</a></li>
+			</ul>
+		</div>
+	</header>
+	<div class="container col-md-10 col-md-offset-1">
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste des Categories</div>
+			<div class="panel-body">
+
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>NomSousCategorie</th>
+						<th>Nom_categorie</th>
+						<th></th>
+					</tr>
+
+					<tr th:each="p:${Souscategorie}">
+							<td th:text="${p.idsousCategorie}"></td>
+				
+							<td th:text="${p.nomSousCategorie}"></td>
+						<td th:text="${p.categorie.nomCategorie}"></td>
+						<td><a th:href="@{EditSoutCat(id=${p.idsousCategorie})}">Edite</a></td>
+						<td><a onclick="return confirm('Etes vous sure ?')"
+							th:href="@{SupprimerSousCat(id=${p.idsousCategorie})}">Delete</a></td>
+
+					</tr>
+
+				</table>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>
